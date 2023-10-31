@@ -1,0 +1,12 @@
+<header class="mt-3 mb-3">
+    <ul class="nav nav-pills">
+    <li role="presentation"><a href="{% url 'main_page' %}">Home</a></li>
+        {% if user.is_authenticated %}
+            <li role="presentation"><a href="{% url 'profile' %}">My articles</a></li>
+            <li role="presentation"><a href="{% url 'logout' %}">Log out</a></li>
+        {% else %}
+            <li role="presentation"><a href="{% url 'login' %}">Log in</a></li>
+            <li role="presentation"><a href="{% url 'sign-up' %}">Sign Up</a></li>
+        {% endif %}
+    </ul>
+</header>

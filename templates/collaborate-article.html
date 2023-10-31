@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block hello_content %}
+    <div class="jumbotron">
+        <h1>You can collaborate with your friend here.</h1>
+        <p>Please input his email and try!</p>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <form action="/create-collaboration/" method="post" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" name="collaborate_email" id="exampleInputEmail3" placeholder="Email">
+        </div>
+        <input type="text" hidden="" class="form-control" name="article_id" value="{{ article_id }}">
+        <button type="submit" class="btn btn-primary">Collaborate</button>
+    </form>
+{% endblock %}

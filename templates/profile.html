@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block hello_content %}
+    <div class="jumbotron">
+        <h1>Welcom Author!</h1>
+        <p>Here you can add your own articles! It is easy, try it.</p>
+        <p><a class="btn btn-primary btn-lg" href="{% url 'create_article' %}" role="button">Create article</a></p>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h2>Your articles..</h2>
+
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ article.title }}</h3>
+                        <h4>{{ article.author }}</h4>
+                        <div>
+                            <a href="/update-article/{{ article.id }}/" class="btn btn-primary" role="button">Edit</a>
+                            <form action="{% url 'articles_delete' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="article_id" value="{{ article.id }}">
+                                <input class="btn btn-default" type="submit" value="Remove">
+                            </form>
+                            <a href="/collaborate-article/{{ article.id }}/" class="btn btn-default" role="button">Collaborate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

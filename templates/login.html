@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block hello_content %}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" name="email" id="exampleInputEmail3" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword3" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+    {% if errors %}
+        <div class="mt-3 mb-3">
+            <p class="text-danger">{{ errors }}</p>
+        </div>
+    {% endif %}
+{% endblock %}
